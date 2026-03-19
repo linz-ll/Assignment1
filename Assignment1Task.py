@@ -54,6 +54,8 @@ class Assignment1:
         for p in self.pThreads:
             p.join()
 
+        print("Simulation finished.")
+
     # Printer class
     class printerThread(threading.Thread):
         def __init__(self, printerID, outer):
@@ -113,9 +115,9 @@ class Assignment1:
         def isRequestSafe(self, id):
             print(f"Machine {id} Checking availability")
             # Acquire counting semaphore (wait for an available printer)
-            self.outer.semaphore.aquire()
+            self.outer.semaphore.acquire()
             # Acquire binary semaphore for mutual exclusion of the print queue
-            self.outer.binary.aquire()
+            self.outer.binary.acquire()
             # Both semaphores acquired
             print(f"Machine {id} will proceed")
 
