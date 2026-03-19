@@ -105,6 +105,16 @@ class Assignment1:
             sleepSeconds = random.randint(1, self.outer.MAX_MACHINE_SLEEP)
             time.sleep(sleepSeconds)
 
+        # Write code here for Acquiring the Counting Semaphore
+        def isRequestSafe(self, id):
+            print(f"Machine {id} Checking availability")
+            # Acquire counting semaphore (wait for an available printer)
+            self.outer.semaphore.aquire()
+            # Acquire binary semaphore for mutual exclusion of the print queue
+            self.outer.binary.aquire()
+            # Both semaphores acquired
+            print(f"Machine {id} will proceed")
+
         def printRequest(self, id):
             print(f"Machine {id} Sent a print request")
             # Build a print document
