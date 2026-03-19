@@ -47,6 +47,8 @@ class Assignment1:
 
         # Wait until all printer threads finish by joining them
         # Write code here
+        for p in self.pThreads:
+            p.join()
 
     # Printer class
     class printerThread(threading.Thread):
